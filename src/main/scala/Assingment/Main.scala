@@ -21,7 +21,6 @@ object Main {
       var vote: Int = votes.toInt
     }
 
-
     val fileName = "resources/imdb_movies.csv"
     var i = 0
     var movieIndex = 0
