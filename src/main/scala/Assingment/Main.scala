@@ -8,9 +8,9 @@ object Main {
 
   def main(args: Array[String]): Unit = {
 
-    case class Movies(imdb_title_id1: String, title1: String, year1: String, drct: String, cntry: List[String], lang: List[String], bdgt: String, durtn: String, usrRvws: String, votes: String) {
-      var imdb_title_id: String = imdb_title_id1
-      var title: String = title1
+    case class Movies(id: String, movTitle: String, year1: String, drct: String, cntry: List[String], lang: List[String], bdgt: String, durtn: String, usrRvws: String, votes: String) {
+      var imdb_title_id: String = id
+      var title: String = movTitle
       var year: Int = year1.toInt
       var director: String = drct
       var country: List[String] = cntry
@@ -75,7 +75,7 @@ object Main {
     }
 
     var titleList = titleByDirector("Alfred E. Green", 1930, 2000)
-    //    println(titleList.toString())
+        println(titleList.toString())
 
     //milestone 2
 
@@ -91,7 +91,7 @@ object Main {
     }
 
     var titleByReview = moviesWithHighestReview(2)
-    //    println(titleByReview)
+        println(titleByReview)
 
     //  milestone3
 
@@ -102,15 +102,12 @@ object Main {
       languageSet = languageSet.++(mapElemnt.language.toSet)
     }
 
-    //  println(laguageSet.toList.sortBy(r=>r))
     def moviesByCountry(): Unit = {
 
       for (country <- countrySet) {
-        //      var mov = movieList.groupBy(c => c.country(c.country.indexOf(country)))
         var mov = movieList.filter(_.country.contains(country))
         mov = mov.sortBy(b => b.budget).reverse
-        //        println(s"${country} =>  ${mov(0).budget} ${mov(0).title}")
-        //        println("-----------------------------------------------------------------")
+                println(s"${country} =>  ${mov(0).budget} ${mov(0).title}")
       }
     }
 
@@ -129,7 +126,7 @@ object Main {
     }
 
     var longestMovieList = longestMovieCountryWise(100)
-    //    longestMovieList.foreach(println)
+        longestMovieList.foreach(println)
 
     //MileStone 5
 
