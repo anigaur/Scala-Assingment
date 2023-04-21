@@ -133,19 +133,17 @@ object Main {
 
     //MileStone 5
 
-    def languageWiseMovieCount(country: String, minBudget: Int, maxBudget: Int): ListBuffer[Movies] = {
-      var finalList = ListBuffer[Movies]()
+    def languageWiseMovieCount(country: String, minBudget: Int, maxBudget: Int): ListBuffer[ListBuffer[Movies]] = {
+      var finalList = ListBuffer[ListBuffer[Movies]]()
       var movv = movieList.filter(_.country.contains(country))
       for (language <- languageSet) {
         var mov = movv.filter(_.language.contains(language)).filter(_.budget >= minBudget).filter(_.budget <= maxBudget)
-        finalList.++(mov)
-        println(s"${language} ${mov.length}")
+        finalList+=mov
+//        println(s"${language} ${mov.length}")
       }
-        return finalList
-
+        return finalList.sortBy(r=> r.size).reverse
 
     }
-    var temp = languageWiseMovieCount("USA", 1000, 900000000)
-    println(temp)
+    var languageWiseMovieList = languageWiseMovieCount("USA", 1000, 900000000)
   }
 }
